@@ -9,7 +9,7 @@ module MytourLib
 
         def build_single_resource(resource)
           {
-            name: "madhu",
+            first_name: "madhu",
             last_name: "Bhsakar"
           }
         end
@@ -19,7 +19,7 @@ module MytourLib
 
         def build_single_linked_resources(roles, status, address)
         end
-        
+
       end
     end
   end
