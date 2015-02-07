@@ -3,21 +3,23 @@ module MytourLib
     module Tests
       # Writer class
       class Writer < MytourLib::JsonApi::BaseWriter
-        
+
         def build_links
+          HashBuilder.build(scope: self) do
+            send('MytourLib.products') do
+              href 'http://localhost/api/v1/products'
+              type 'products'
+            end
+          end
         end
 
-        def build_single_resource(resource)
-          {
-            first_name: "madhu",
-            last_name: "Bhsakar"
-          }
-        end
-
-        def build_links_with_ids(_resource)
-        end
-
-        def build_single_linked_resources(roles, status, address)
+        def build_single_resource(product)
+          HashBuilder.build(scope: self) do
+            id product.id
+            name product.name
+            description product.description
+            cost product.cost
+          end
         end
 
       end

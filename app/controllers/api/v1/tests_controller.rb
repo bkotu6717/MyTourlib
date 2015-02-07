@@ -7,7 +7,8 @@ module Api
       end
 
       def create
-        render json: "this is create action"
+        product = Product.create(product_params)
+        render json: MytourLib::JsonApi::Tests::SingleWriter.new.write('products', product, params)
       end
 
       def show
@@ -23,6 +24,11 @@ module Api
         render json: "this is update action"
       end
       
+
+      private
+        def product_params
+          params.require(:products).permit(:name, :description, :cost)
+        end
     end
   end
 end
