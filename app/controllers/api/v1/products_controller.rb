@@ -1,19 +1,20 @@
 module Api
   module V1
-    class TestsController < ApplicationController
+    class ProductsController < ApplicationController
 
       def index
-        render json: "this is index action"
+        products = Product.all
+        render json: MytourLib::JsonApi::Products::CollectionWriter.new.write('products', products, params)
       end
 
       def create
         product = Product.create(product_params)
-        render json: MytourLib::JsonApi::Tests::SingleWriter.new.write('products', product, params)
+        render json: MytourLib::JsonApi::Products::SingleWriter.new.write('products', product, params)
       end
 
       def show
-        @test  = Test.find(params[:id])
-        render json: MytourLib::JsonApi::Tests::SingleWriter.new.write('tests', @test, params)
+        product = Product.find(params[:id])
+        render json: MytourLib::JsonApi::Products::SingleWriter.new.write('products', product, params)
       end
 
       def update

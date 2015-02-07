@@ -1,8 +1,8 @@
 module MytourLib
   module JsonApi
-    module Tests
+    module Products
       # Single Writer class
-      class SingleWriter < MytourLib::JsonApi::Tests::Writer
+      class SingleWriter < MytourLib::JsonApi::Products::Writer
 
         def build_resource
           build_single_resource(@resource)

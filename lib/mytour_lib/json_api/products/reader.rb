@@ -1,6 +1,6 @@
 module MyTourLib
   module JsonApi
-    module Tests
+    module Products
       # Reader class
       class Reader < MyTourLib::JsonApi::BaseReader
       end

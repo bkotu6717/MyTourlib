@@ -1,9 +1,9 @@
 module MytourLib
   module JsonApi
-    module Tests
-      # Matcher class
-      class Matcher < MytourLib::JsonApi::BaseMatcher
-        
+    module Products
+      # Writer class
+      class Writer < MytourLib::JsonApi::BaseWriter
+
         def build_links
           HashBuilder.build(scope: self) do
             send('MytourLib.products') do
@@ -13,7 +13,7 @@ module MytourLib
           end
         end
 
-        def build_single_matcher(product)
+        def build_single_resource(product)
           HashBuilder.build(scope: self) do
             id product.id
             name product.name
@@ -21,6 +21,7 @@ module MytourLib
             cost product.cost
           end
         end
+
       end
     end
   end

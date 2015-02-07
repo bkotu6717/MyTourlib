@@ -1,8 +1,8 @@
 module MytourLib
   module JsonApi
-    module Tests
+    module Products
       # Single Matcher class
-      class SingleMatcher < MytourLib::JsonApi::Tests::Matcher
+      class SingleMatcher < MytourLib::JsonApi::Products::Matcher
         
         def build_resource_match(resource)
           {
