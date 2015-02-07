@@ -18,6 +18,7 @@ describe '/api/v1/tests' do
     		description: "This test description one",
     		cost: 143
     	}
+    	expect(response.status).to eq(201)
      expect(response.body).to match_json_expression(
       MytourLib::JsonApi::Products::SingleMatcher.new.match(Product.last))
     end
@@ -26,6 +27,7 @@ describe '/api/v1/tests' do
     	product # this is call the above one it can be useful reusable
     	request.accept = 'application/json'
     	get :show, id: product.id
+    	expect(response.status).to eq(201)
     	expect(response.body).to match_json_expression(
       	MytourLib::JsonApi::Products::SingleMatcher.new.match(product))
     end

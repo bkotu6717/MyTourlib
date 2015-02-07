@@ -1,3 +1,4 @@
+# info everybody should returns status code for each action and test response in rspec
 module Api
   module V1
     class ProductsController < ApplicationController
@@ -9,22 +10,27 @@ module Api
 
       def create
         product = Product.create(product_params)
-        render json: MytourLib::JsonApi::Products::SingleWriter.new.write('products', product, params)
+         render status: 201, json: MytourLib::JsonApi::Products::SingleWriter.new.write('products', product, params)
+      rescue ActiveRecord::RecordInvalid => exception
+        render status: 403, json: exception.record.errors
       end
 
       def show
         product = Product.find(params[:id])
-        render json: MytourLib::JsonApi::Products::SingleWriter.new.write('products', product, params)
+       render status: 201, json: MytourLib::JsonApi::Products::SingleWriter.new.write('products', product, params)
+       rescue ActiveRecord::RecordInvalid => exception
+        render status: 403, json: exception.record.errors
       end
 
       def update
-        render json: "this is update action"
+        render status: 201, json: "this is update action"
       end
 
       def destroy
-        render json: "this is update action"
+        render status: 204, json: nil
+      rescue ActiveRecord::RecordInvalid => exception
+        render status: 403, json: exception.record.errors
       end
-      
 
       private
         def product_params
