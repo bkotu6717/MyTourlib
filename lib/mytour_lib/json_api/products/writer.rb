@@ -3,7 +3,6 @@ module MytourLib
     module Products
       # Writer class
       class Writer < MytourLib::JsonApi::BaseWriter
-
         def build_links
           HashBuilder.build(scope: self) do
             send('MytourLib.products') do
@@ -21,7 +20,6 @@ module MytourLib
             cost product.cost
           end
         end
-
       end
     end
   end

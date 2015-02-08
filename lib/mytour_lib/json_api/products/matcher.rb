@@ -3,7 +3,6 @@ module MytourLib
     module Products
       # Matcher class
       class Matcher < MytourLib::JsonApi::BaseMatcher
-        
         def build_links
           HashBuilder.build(scope: self) do
             send('MytourLib.products') do

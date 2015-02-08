@@ -2,7 +2,6 @@ module MytourLib
   module JsonApi
     # base writer which outputs JsonApi
     class BaseWriter
-      
       def write(resource_name, resource, params, current_user = nil)
         @params = params
         @resource = resource
