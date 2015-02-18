@@ -30,7 +30,7 @@ describe '/api/v1/tests' do
        MytourLib::JsonApi::Users::SingleMatcher.new.match(User.last))
     end
 
-    it 'should able to show the product' do
+    it 'should able to show the user' do
       user
       request.accept = 'application/json'
       get :show, id: user.id
@@ -58,6 +58,14 @@ describe '/api/v1/tests' do
       expect(user.first_name).to eq('Admin')
       expect(user.user_information.profile_name). to eq('MadhuRiseOne')
       puts user.user_information
+    end
+
+    it 'should able to delete the user' do
+      user
+      request.accept = 'application/json'
+      delete :destroy, id: user.id
+      expect(response.status).to eq(204)
+      expect(User.all.count).to eq(0)
     end
   end
 end

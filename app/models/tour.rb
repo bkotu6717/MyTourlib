@@ -1,4 +1,4 @@
 # Tour Model
 class Tour < ActiveRecord::Base
-  has_many :galleries
+  has_many :pictures, as: :imageable
 end
