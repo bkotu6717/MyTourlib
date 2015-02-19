@@ -2,7 +2,7 @@ require 'spec_helper'
 describe '/api/v1/tests' do
   describe Api::V1::UsersController, type: :controller do
     let(:user) { FactoryGirl.create(:user) }
-
+    let(:user_one) { FactoryGirl.create(:user, :request_user)}
     it 'should able get the list of users' do
       user
       get :index
@@ -66,6 +66,19 @@ describe '/api/v1/tests' do
       delete :destroy, id: user.id
       expect(response.status).to eq(204)
       expect(User.all.count).to eq(0)
+    end
+
+    it 'should able to send request to another user with a waiting status' do
+      user
+      user_one
+      put :request_management, id: user.id, users: {
+        sender_id: user_one.id, request_status: 'awaiting'
+      }
+      
+      put :request_management, id: user_one.id, users: {
+        sender_id: user.id, request_status: 'accept'
+      }
+      puts "checking information"
     end
   end
 end

@@ -40,6 +40,16 @@ module Api
         render status: 403, json: exception.record.errors
       end
 
+      def request_management
+        if params[:users][:request_status]=='awaiting'
+          @user.friends.create(sender_id: params[:users][:sender_id], 
+            request_status: User.request_statuses[:awaiting])
+        elsif params[:users][:request_status]=='accept'
+          puts @user.friends.inspect
+          # puts @user.friends.where(sender_id: params[:users][:sender_id]).inspect
+        end
+        render :json => "ok"
+      end
       private
 
       def users_params
